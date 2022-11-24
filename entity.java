@@ -38,13 +38,19 @@ public class Table
 // class of entity objects :Guest
 public class Guest
 {
+    private int guestID;
+    private String name;
+    private String phoneNumber;
+    
     // add fields
     
     // add methods
     
-    public Guest()
+    public Guest(String argName, String argPhoneNumber)
     {
         // define constructor
+        name = argName;
+        phoneNumber = argPhoneNumber;
     }
 }
 
