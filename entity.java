@@ -1,13 +1,36 @@
 // class of entity objects :Table 
 public class Table
 {
+    private int tableNumber;
+    // section
+    private int defaultSize;
+    private boolean tableStatus;    // signifies whether reserved
+    
     // add fields
     
+    public void assignTable(Reservation arg)
+    {
+        //
+        tableStatus = 1;
+    }
+    
+    public void clearTable()
+    {
+        //
+        tableStatus = 0;
+    }
+    
+    public boolean CheckStatus()
+    {
+        return tableStatus;
+    }
     // add methods
     
-    public Table()
+    public Table(int argDefaultSize)
     {
         // define constructor
+        defaultSize = argDefaultSize;
+        tableStatus = 0;
     }
 }
 
