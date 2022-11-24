@@ -58,13 +58,37 @@ public class Guest
 // association class: realising link of object :Guest and object :Table 
 public class Reservation
 {
+    private int reservationID;
+    private int groupSize;
+    private int reservationTime;
+    // sectionPreference
+    
+    private Vector tableList;       // list of associated tables
     // add fields
+    
+    public void createReservation()
+    {
+        //
+    }
+    
+    public void cancelReservation()
+    {
+        //
+    }
+    
+    public void modifyReservation()
+    {
+        //
+    }
     
     // add methods
     
-    public Reservation(Guest argGuest, Table argTable)
+    public Reservation(Guest argGuest, Table[] argTable, int argCount)
     {
         // define constructor
+        tableList = new Vector();
+        for(int index = 0; index < argCount; ++argCount)
+            tableList.addElement(argTable[index]);
     }
 }
 
