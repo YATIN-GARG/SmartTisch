@@ -33,39 +33,42 @@ class Admin extends Employee
     }
 }
 
+
 // class of entity objects :Table 
 public class Table
 {
+    static int count;
+    static
+    {
+        count = 0;            
+    }
+    
     private int tableNumber;
-    // section
+    private String section;
     private int defaultSize;
     private boolean tableStatus;    // signifies whether reserved
     
-    // add fields
-    
-    public void assignTable(Reservation arg)
+    public void assignTable()
     {
-        //
-        tableStatus = 1;
+        tableStatus = true;
     }
     
     public void clearTable()
     {
-        //
-        tableStatus = 0;
+        tableStatus = false;
     }
     
     public boolean CheckStatus()
     {
         return tableStatus;
     }
-    // add methods
     
-    public Table(int argDefaultSize)
+    public Table(String argSection, int argDefaultSize)
     {
-        // define constructor
+        tableNumber = ++count + 100;        // tableNumber(s) are assigned subsequent numbers beginning from 101
+        section = argSection;
         defaultSize = argDefaultSize;
-        tableStatus = 0;
+        tableStatus = false;
     }
 }
 
