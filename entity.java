@@ -13,13 +13,13 @@ public class Employee
 
 
 // class of entity object :Admin (subclass of Employee)
-class Admin extends Employee
+public class Admin extends Employee
 {
     // add fields
     
-    public void createGuest()
+    public Guest createGuest(String argName, String argPhoneNumber)
     {
-        Guest(...);     // need to store instance
+        return Guest(argName, argPhoneNumber);
     }
     
     public void createTableList(int argCount, String argSection[], int argDefaultSize[])
@@ -30,7 +30,7 @@ class Admin extends Employee
     
     public void deleteTableList()
     {
-        // either define destructor for Table or assign NULL to references to Table
+        // either define destructor or assign NULL to references
     }
 }
 
@@ -77,17 +77,24 @@ public class Table
 // class of entity objects :Guest
 public class Guest
 {
+    static int count;
+    static
+    {
+        count = 0;
+    }
+    
     private int guestID;
     private String name;
     private String phoneNumber;
     
     // add fields
     
+    
     // add methods
     
     public Guest(String argName, String argPhoneNumber)
     {
-        // define constructor
+        guestID = ++count + 1000;       // guestID(s) are assigned subsequent numbers beginning from 1001
         name = argName;
         phoneNumber = argPhoneNumber;
     }
