@@ -19,17 +19,18 @@ class Admin extends Employee
     
     public void createGuest()
     {
-        //
+        Guest(...);     // need to store instance
     }
     
-    public void createTableList()
+    public void createTableList(int argCount, String argSection[], int argDefaultSize[])
     {
-        //
+        for(int index = 0; index < argCount; ++index)
+            Table(argSection[index], argDefaultSize[index]);        // need to store instances
     }
     
     public void deleteTableList()
     {
-        //
+        // either define destructor for Table or assign NULL to references to Table
     }
 }
 
