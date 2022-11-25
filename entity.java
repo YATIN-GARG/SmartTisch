@@ -1,3 +1,38 @@
+// class of entity objects :Employee
+public class Employee
+{
+    private String name;
+    private String position;
+    
+    public Employee(String argName, String argPosition)
+    {
+        name = argName;
+        position = argPosition;
+    }
+}
+
+
+// class of entity object :Admin (subclass of Employee)
+class Admin extends Employee
+{
+    // add fields
+    
+    public void createGuest()
+    {
+        //
+    }
+    
+    public void createTableList()
+    {
+        //
+    }
+    
+    public void deleteTableList()
+    {
+        //
+    }
+}
+
 // class of entity objects :Table 
 public class Table
 {
