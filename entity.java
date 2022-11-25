@@ -104,37 +104,70 @@ public class Guest
 // association class: realising link of object :Guest and object :Table 
 public class Reservation
 {
+    static int count;
+    static
+    {
+        count = 0;
+    }
+    
     private int reservationID;
     private int groupSize;
     private int reservationTime;
-    // sectionPreference
+    private String sectionPreference;
     
-    private Vector tableList;       // list of associated tables
-    // add fields
+    private Guest visitor;              // Guest who reserves table(s)
+    private Vector<Table> tableList;    // List of reserved table(s)
+    private int tableCount;             // Count of reserved table(s)
     
     public void createReservation()
     {
-        //
+        // constructor would serve the purpose
     }
     
     public void cancelReservation()
     {
-        //
+        // setting the reserved tables free
+        for(int index = 0; index < tableCount; ++index)
+            tableList[index].tableStatus = false;
     }
     
-    public void modifyReservation()
+    // argAlternative signifies the kind of modification
+    public boolean modifyReservation(int argAlternative, int argCount = 0, Table argTable[] = NULL)
     {
-        //
+        switch(expression) 
+        {
+            case 1:     // reserve table(s) in addition
+                for(int index = 0; index < argCount; ++index)
+                {
+                    tableList.addElement(argTable[index]);
+                    argTable[index].tableStatus = true;
+                }
+                tableCount += argCount;
+                break;
+            
+            // add more alternatives
+        }
+        
+        return 0;   // success
     }
     
     // add methods
     
-    public Reservation(Guest argGuest, Table[] argTable, int argCount)
+    public Reservation(Guest argGuest, Table[] argTable, int argTableCount, int argGroupSize, int argReservationTime, String argSectionPreference)
     {
-        // define constructor
+        visitor = argGuest;
         tableList = new Vector();
-        for(int index = 0; index < argCount; ++argCount)
+        for(int index = 0; index < argTableCount; ++argCount)
+        {
             tableList.addElement(argTable[index]);
+            argTable[index].tableStatus = true;
+        }
+        tableCount = argTableCount;
+        
+        groupSize = argGroupSize;
+        reservationTime = argReservationTime;
+        sectionPreference = argSectionPreference;
+        reservationID = ++count + 100000;       // reservationID(s) are assigned subsequent numbers beginning from 100001
     }
 }
 
