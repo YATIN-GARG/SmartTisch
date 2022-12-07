@@ -1,51 +1,49 @@
+package SmartTisch;
+
 // class of entity objects :Employee
 public class System{
     vector<Table> total_tables;
-    private vector<Employee> total_employees;
+    private Admin admin_user;
     private vector<Guest> guests;
 
-    private System(int tot_tables, int tot_employees){
-        this.total_tables = new Vector<table> (tot_tables);
-        this.total_employees = new Vector<Employee> (tot_employees);
+    private System(String Name){
+        this.total_tables = new Vector<table> ();
+        this.admin_user = Admin(Name);
         this.guests = new Vector<Guest> ();
-    }
-}
-
-public class Employee
-{
-    private String name;
-    private String position;
-
-    public Employee(String argName, String argPosition)
-    {
-        name = argName;
-        position = argPosition;
     }
 }
 
 
 // class of entity object :Admin (subclass of Employee)
-public class Admin extends Employee
+public class Admin
 {
     // add fields
+    private String name;
+
+    public Admin(String argName)
+    {
+        name = argName;
+    }
 
     public Guest createGuest(String argName, String argPhoneNumber)
     {
         return Guest(argName, argPhoneNumber);
     }
 
-    public void createTableList(int argCount, String argSection[], int argDefaultSize[])
+    public Table createTable(int argDefaultSize)
     {
-        for(int index = 0; index < argCount; ++index)
-            Table(argSection[index], argDefaultSize[index]);        // need to store instances
+        return Table(argDefaultSize);
     }
 
-    public void deleteTableList()
+    public void deleteTable()
     {
         // either define destructor or assign NULL to references
     }
-}
 
+    public void createReservation(Guest argGuest, Table argTable, int argGroupSize, int argReservationTime){
+        Reservation r = Reservation(argGuest, argTable, argGroupSize, argReservationTime)
+    }
+}
 
 // class of entity objects :Table
 public class Table
@@ -57,9 +55,10 @@ public class Table
     }
 
     private int tableNumber;
-    private String section;
     private int defaultSize;
     private boolean tableStatus;    // signifies whether reserved
+
+    private vector<Reservation> reservationList;
 
     public void assignTable()
     {
@@ -76,12 +75,20 @@ public class Table
         return tableStatus;
     }
 
-    public Table(String argSection, int argDefaultSize)
+    public void addReservation(Reservation argReservation){
+        reservationList.addElement(argReservation);
+    }
+
+    public vector<Reservation> getReservation(){
+        return reservationList;
+    }
+
+    public Table(int argDefaultSize)
     {
         tableNumber = ++count + 100;        // tableNumber(s) are assigned subsequent numbers beginning from 101
-        section = argSection;
         defaultSize = argDefaultSize;
         tableStatus = false;
+        reservationList = new Vector<Reservation> ();
     }
 }
 
@@ -124,17 +131,10 @@ public class Reservation
 
     private int reservationID;
     private int groupSize;
-    private int reservationTime;
-    private String sectionPreference;
+    private int reservationTime;        //Reservation Start time and duration is fixed
 
     private Guest visitor;              // Guest who reserves table(s)
-    private Vector<Table> tableList;    // List of reserved table(s)
-    private int tableCount;             // Count of reserved table(s)
-
-    public void createReservation()
-    {
-        // constructor would serve the purpose
-    }
+    private Table rev_table;   // List of reserved table(s)
 
     public void cancelReservation()
     {
@@ -165,20 +165,20 @@ public class Reservation
 
     // add methods
 
-    public Reservation(Guest argGuest, Table[] argTable, int argTableCount, int argGroupSize, int argReservationTime, String argSectionPreference)
+    public int getReservationTime(){
+        return reservationTime;
+    }
+
+    public Reservation(Guest argGuest, Table argTable, int argGroupSize, int argReservationTime)
     {
         visitor = argGuest;
-        tableList = new Vector();
-        for(int index = 0; index < argTableCount; ++argCount)
-        {
-            tableList.addElement(argTable[index]);
-            argTable[index].tableStatus = true;
-        }
-        tableCount = argTableCount;
+        rev_table = argTable;
+        argTable.tableStatus = true;
+
+        argTable.addReservation(this);
 
         groupSize = argGroupSize;
         reservationTime = argReservationTime;
-        sectionPreference = argSectionPreference;
         reservationID = ++count + 100000;       // reservationID(s) are assigned subsequent numbers beginning from 100001
     }
 }

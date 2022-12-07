@@ -1,13 +1,13 @@
 // importing required files from package
-import SmartTisch.entity;
-
+// import SmartTisch.SmartTisch;
 
 // driver
 public class main
 {
   public static void main(String args[])
   {
-    System.out.println("SmartTisch");
+    control obj;
+    System.out.println("Smart Tisch");
     // add calls and definitions as per flow
   }
 }
