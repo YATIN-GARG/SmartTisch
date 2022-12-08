@@ -1,6 +1,6 @@
 import java.util.*;
 
-// association class: realising link of object :Guest and object :Table
+// association class: realizing link of object :Guest and object :Table
 public class Reservation
 {
     static int count;
@@ -16,11 +16,22 @@ public class Reservation
     private Guest visitor;              // Guest who reserves table(s)
     private Table rev_table;   // List of reserved table(s)
 
+    public int getReservationID(){
+        return reservationID;
+    }
+
     public void cancelReservation()
     {
-        // setting the reserved tables free
-        // for(int index = 0; index < tableCount; ++index)
-        //     tableList[index].tableStatus = false;
+        Vector<Reservation> reservations = rev_table.getReservation();
+        for(int i=0; i<reservations.size(); i++){
+            if(reservations.get(i) == this){
+                for(int j=i; j<reservations.size()-1; j++){
+                    reservations.set(j, reservations.get(j+1));
+                }
+                reservations.remove(reservations.size()-1);
+                break;
+            }
+        }
     }
 
     // argAlternative signifies the kind of modification
@@ -53,12 +64,11 @@ public class Reservation
     {
         visitor = argGuest;
         rev_table = argTable;
-        argTable.tableStatus = true;
-
-        argTable.addReservation(this);
-
+        argTable.assignTable();
         groupSize = argGroupSize;
         reservationTime = argReservationTime;
         reservationID = ++count + 100000;       // reservationID(s) are assigned subsequent numbers beginning from 100001
+
+        argTable.addReservation(this);
     }
 }

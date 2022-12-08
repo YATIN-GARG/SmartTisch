@@ -12,6 +12,8 @@ public class Table
     private int tableNumber;
     private int defaultSize;
     private boolean tableStatus;    // signifies whether reserved
+    private Vector<Reservation> reservationList;
+
 
     public boolean getTableStatus(){
         return tableStatus;
@@ -20,8 +22,6 @@ public class Table
     public int getDefaultSize(){
         return defaultSize;
     }
-
-    private Vector<Reservation> reservationList;
 
     public void assignTable()
     {

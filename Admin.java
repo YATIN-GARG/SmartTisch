@@ -26,7 +26,12 @@ public class Admin
     //     // either define destructor or assign NULL to references
     // }
 
-    public void createReservation(Guest argGuest, Table argTable, int argGroupSize, int argReservationTime){
+    public Reservation createReservation(Guest argGuest, Table argTable, int argGroupSize, int argReservationTime){
         Reservation r = new Reservation(argGuest, argTable, argGroupSize, argReservationTime);
+        return r;
+    }
+
+    public void cancelReservation(int reservation_id){
+
     }
 }

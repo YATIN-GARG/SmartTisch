@@ -4,10 +4,12 @@ public class ReservationSystem{
     Vector<Table> total_tables;
     public Admin admin_user;
     public Vector<Guest> guests;
+    public Vector<Reservation> reservations;
 
     public ReservationSystem(String Name){
         this.total_tables = new Vector<Table> ();
         this.admin_user = new Admin(Name);
         this.guests = new Vector<Guest> ();
+        this.reservations = new Vector<Reservation> ();
     }
 }

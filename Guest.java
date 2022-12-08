@@ -18,6 +18,10 @@ public class Guest
 
     // add methods
 
+    public int getGuestID(){
+        return guestID;
+    }
+
     public Guest(String argName, String argPhoneNumber)
     {
         guestID = ++count + 1000;       // guestID(s) are assigned subsequent numbers beginning from 1001
