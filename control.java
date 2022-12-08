@@ -1,15 +1,15 @@
-package SmartTisch;
+import java.util.*;
 
 public class control{
-    private System s;
+    private ReservationSystem s;
 
     private control(){
-        s = System("Admin1");
+        s = new ReservationSystem("Admin1");
     }
 
     private void addTable(int argDefaultSize){
         Table new_table = s.admin_user.createTable(argDefaultSize);
-        total_tables.addElement(new_table);
+        s.total_tables.addElement(new_table);
     }
 
     private void addReservation(Guest argGuest, Table argTable, int argGroupSize, int argReservationTime){
@@ -21,21 +21,22 @@ public class control{
         s.guests.addElement(new_guest);
     }
 
-    private Table searchAvailablity(int argCapacity, int argStartTime){
+    private Table searchAvailability(int argCapacity, int argStartTime){
         for(int i=0; i<s.total_tables.size(); i++){
-            if(s.total_tables[i].tableStatus!=true && s.total_tables[i].defaultSize>=argCapacity){
-                return total_tables[i];
-            }else if(s.total_tables[i].tableStatus==true && s.total_tables[i].defaultSize>=argCapacity){
-                vector<Reservation> reservationList = table_tables[i].getReservation();
-                for(int i=0; i<reservationList.size(); i++){
-                    if(reservationList[i].getReservationTime()==argStartTime){
-                        return NULL;
+            if(s.total_tables.get(i).getTableStatus()!=true && s.total_tables.get(i).getDefaultSize()>=argCapacity){
+                return s.total_tables.get(i);
+            }else if(s.total_tables.get(i).getTableStatus()==true && s.total_tables.get(i).getDefaultSize()>=argCapacity){
+                Vector<Reservation> reservationList = s.total_tables.get(i).getReservation();
+                for(int j=0; j<reservationList.size(); j++){
+                    if(reservationList.get(j).getReservationTime()==argStartTime){
+                        return null;
                     }
                 }
-                return total_tables[i];
+                return s.total_tables.get(i);
             }else{
-                return NULL;
+                return null;
             }
         }
+        return null;
     }
 }
