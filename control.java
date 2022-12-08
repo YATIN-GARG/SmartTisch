@@ -2,6 +2,20 @@ import java.util.*;
 
 public class control{
     private ReservationSystem s;
+    
+    public static control controller;
+    public static control createControl()
+    {
+        if(controller)
+            return controller;
+        else
+            return control();
+    }
+    
+    static
+    {
+        controller = NULL;
+    }
 
     private control(){
         s = new ReservationSystem("Admin1");
