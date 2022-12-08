@@ -39,9 +39,17 @@ public class control{
         s.total_tables.addElement(new_table);
     }
 
+    public void print_Tables(){
+        for(int i=0; i<s.total_tables.size(); i++){
+            System.out.println(s.total_tables.get(i).getDefaultSize() + " "+s.total_tables.get(i).getTableNumber());
+        }
+    }
+
     public int addReservation(Guest argGuest, Table argTable, int argGroupSize, int argReservationTime){
         Reservation r = s.admin_user.createReservation(argGuest, argTable, argGroupSize, argReservationTime);
         s.reservations.addElement(r);
+        String user = argGuest.getName();
+        System.out.println("Table Reservation Successful for " + user);
         return r.getReservationID();
     }
 
@@ -69,18 +77,17 @@ public class control{
 
     public Table searchAvailability(int argCapacity, int argStartTime){
         for(int i=0; i<s.total_tables.size(); i++){
-            if(s.total_tables.get(i).getTableStatus()!=true && s.total_tables.get(i).getDefaultSize()>=argCapacity){
-                return s.total_tables.get(i);
-            }else if(s.total_tables.get(i).getTableStatus()==true && s.total_tables.get(i).getDefaultSize()>=argCapacity){
+            if(s.total_tables.get(i).getDefaultSize()>=argCapacity){
                 Vector<Reservation> reservationList = s.total_tables.get(i).getReservation();
+                boolean flag=false;
                 for(int j=0; j<reservationList.size(); j++){
                     if(reservationList.get(j).getReservationTime()==argStartTime){
-                        return null;
+                        flag=true;
+                        break;
                     }
                 }
-                return s.total_tables.get(i);
-            }else{
-                return null;
+
+                if(!flag) return s.total_tables.get(i);
             }
         }
         return null;

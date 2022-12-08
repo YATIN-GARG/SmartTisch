@@ -23,6 +23,10 @@ public class Table
         return defaultSize;
     }
 
+    public int getTableNumber(){
+        return tableNumber;
+    }
+
     public void assignTable()
     {
         tableStatus = true;

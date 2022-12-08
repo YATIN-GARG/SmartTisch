@@ -22,6 +22,10 @@ public class Guest
         return guestID;
     }
 
+    public String getName(){
+        return name;
+    }
+
     public Guest(String argName, String argPhoneNumber)
     {
         guestID = ++count + 1000;       // guestID(s) are assigned subsequent numbers beginning from 1001
