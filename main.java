@@ -13,8 +13,9 @@ public class main
     obj.addTable(2);
     obj.addTable(2);
     obj.addTable(2);
-    obj.addTable(3);
-    obj.addTable(4);
+    obj.addTable(1);
+    // obj.addTable(3);
+    // obj.addTable(4);
 
     // obj.print_Tables();
 
@@ -28,7 +29,7 @@ public class main
 
 
     Table t1 = obj.searchAvailability(2, 9);
-    int r1=0;
+    int r1=0, r2=0, r3=0, r4=0, r5=0;
     if(t1!=null){
       r1 = obj.addReservation(g1, t1, 2, 9);
     }else{
@@ -38,14 +39,28 @@ public class main
 
     Table t2 = obj.searchAvailability(2, 9);
     if(t2!=null){
-      obj.addReservation(g2, t2, 2, 9);
+      r2= obj.addReservation(g2, t2, 2, 9);
     }else{
       System.out.println("Table Not Available");
     }
 
     Table t3 = obj.searchAvailability(2, 9);
     if(t3!=null){
-      obj.addReservation(g3, t3, 2, 9);
+      r3=obj.addReservation(g3, t3, 2, 9);
+    }else{
+      System.out.println("Table Not Available");
+    }
+    obj.cancelReservation(r2);
+    Table t4 = obj.searchAvailability(2, 9);
+    if(t3!=null){
+      r4=obj.addReservation(g1, t4, 2, 9);
+    }else{
+      System.out.println("Table Not Available");
+    }
+
+    Table t5 = obj.searchAvailability(2, 9);
+    if(t5!=null){
+      r5=obj.addReservation(g3, t5, 2, 9);
     }else{
       System.out.println("Table Not Available");
     }

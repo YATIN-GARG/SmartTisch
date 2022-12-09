@@ -71,7 +71,7 @@ public class Reservation
     {
         visitor = argGuest;
         rev_table = argTable;
-        argTable.assignTable();
+        // argTable.assignTable();
         groupSize = argGroupSize;
         reservationTime = argReservationTime;
         

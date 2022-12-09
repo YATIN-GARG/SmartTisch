@@ -49,7 +49,7 @@ public class control{
         Reservation r = s.admin_user.createReservation(argGuest, argTable, argGroupSize, argReservationTime);
         s.reservations.addElement(r);
         String user = argGuest.getName();
-        System.out.println("Table Reservation Successful for " + user);
+        System.out.println("Table Reservation Successful for " + user  + " and reservation id is " + r.getReservationID());
         return r.getReservationID();
     }
 
@@ -67,6 +67,7 @@ public class control{
                 break;
             }
         }
+        System.out.println("Reservation for reservation id " + reservation_id + " is cancelled Sucessfully");
     }
 
     public int addGuest(String argName, String argPhoneNumber){
@@ -82,6 +83,7 @@ public class control{
                 boolean flag=false;
                 for(int j=0; j<reservationList.size(); j++){
                     if(reservationList.get(j).getReservationTime()==argStartTime){
+                        System.out.println("Reserved id "+reservationList.get(j).getReservationID());
                         flag=true;
                         break;
                     }
