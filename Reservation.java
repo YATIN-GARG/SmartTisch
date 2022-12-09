@@ -64,7 +64,7 @@ public class Reservation
     {
         visitor = argGuest;
         rev_table = argTable;
-        argTable.assignTable();
+        // argTable.assignTable();
         groupSize = argGroupSize;
         reservationTime = argReservationTime;
         reservationID = ++count + 100000;       // reservationID(s) are assigned subsequent numbers beginning from 100001
