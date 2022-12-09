@@ -74,8 +74,10 @@ public class Reservation
         argTable.assignTable();
         groupSize = argGroupSize;
         reservationTime = argReservationTime;
-        reservationID = ++count + 100000;       // reservationID(s) are assigned subsequent numbers beginning from 100001
-
+        
+        // reservationID(s) are assigned subsequent numbers beginning from 100001
+        reservationID = ++count + 100000;       
+        // add this Reservation to the list of references in argTable
         argTable.addReservation(this);
     }
 }
