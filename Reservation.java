@@ -23,13 +23,20 @@ public class Reservation
     public void cancelReservation()
     {
         Vector<Reservation> reservations = rev_table.getReservation();
-        for(int i=0; i<reservations.size(); i++){
-            if(reservations.get(i) == this){
-                for(int j=i; j<reservations.size()-1; j++){
+        // search for reservation in list of references to Reservation
+        for(int i=0; i<reservations.size(); i++)
+        {
+            // check whether this instance equals the reference
+            if(reservations.get(i) == this)
+            {
+                // remove reservation from the list of references
+                for(int j=i; j<reservations.size()-1; j++)
+                {
                     reservations.set(j, reservations.get(j+1));
-                }
+                }                
                 reservations.remove(reservations.size()-1);
                 break;
+                // reservation removed
             }
         }
     }
